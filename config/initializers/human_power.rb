@@ -1,0 +1,1 @@
+require "human_power/rails/controller"

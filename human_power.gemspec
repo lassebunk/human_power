@@ -3,7 +3,7 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'human_power/version'
 
-Gem::Specification.new do |spec|
+Gem::Specification.new do |s|
   s.name          = "human_power"
   s.version       = HumanPower::VERSION
   s.authors       = ["Lasse Bunk"]
@@ -19,4 +19,6 @@ Gem::Specification.new do |spec|
 
   s.add_development_dependency "bundler", "~> 1.3"
   s.add_development_dependency "rake"
+  s.add_development_dependency "rails", "~> 4.0.1"
+  s.add_development_dependency "sqlite3"
 end
