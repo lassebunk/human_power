@@ -1,4 +1,5 @@
 require "human_power/version"
+require "human_power/file"
 require "human_power/rails" if defined?(Rails)
 
 module HumanPower
