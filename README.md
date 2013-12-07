@@ -46,6 +46,11 @@ user_agent [:bingbot, :googlebot] do
   disallow login_path
 end
 
+# Custom user agent
+user_agent "My Custom User Agent String" do
+  disallow some_path
+end
+
 # You have access to everything from your ApplicationController
 if request.subdomains.first == "api"
   disallow :all
