@@ -13,8 +13,8 @@ module HumanPower
     end
 
     # Registers a user agent.
-    def register_user_agent(key, name, user_agent_string)
-
+    def register_user_agent(key, user_agent_string)
+      user_agents[key] = user_agent_string
     end
 
     def user_agents
