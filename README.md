@@ -1,6 +1,8 @@
 # Human Power
 
-Human Power lets you write your robots.txt in plain Ruby.
+Human Power lets you write your robots.txt in plain Ruby and force the robots into submission!
+
+![Bingbot getting taught](http://i.imgur.com/77WVSQH.jpg)
 
 **This gem is under initial development and is not released yet.**
 
