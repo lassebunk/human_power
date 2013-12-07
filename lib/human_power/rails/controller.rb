@@ -1,6 +1,6 @@
 module HumanPower
   module Rails
-    class Controller < ::ApplicationController
+    class RobotsController < ::ApplicationController
       def robots
         text = HumanPower::File.new(self) do
           file = Rails.root.join("config", "robots.rb").to_s
