@@ -1,5 +1,5 @@
 module HumanPower
-  class File
+  class Generator
     DISALLOW_KEYS = { all: "*", none: "" }
 
     def initialize(context = nil, &block)
