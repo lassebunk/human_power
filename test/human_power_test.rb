@@ -3,13 +3,17 @@ require 'test_helper'
 class HumanPowerTest < ActionView::TestCase
   test "basic generation" do
     text = HumanPower::Generator.new(self) do
+      allow_tree products_path
+      allow product_path("one")
       disallow_tree admin_path
-      disallow product_path("one")
+      disallow product_path("two")
     end
 
     assert_equal "User-agent: *\n"\
+                 "Allow: /products/\n"\
+                 "Allow: /products/one\n"\
                  "Disallow: /admin/\n"\
-                 "Disallow: /products/one",
+                 "Disallow: /products/two",
                  text.to_s
   end
 
