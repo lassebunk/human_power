@@ -1,3 +1,5 @@
+sitemap sitemap_url
+
 disallow_tree admin_path
 
 googlebot do

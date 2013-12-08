@@ -5,7 +5,9 @@ class IntegrationTest < ActionDispatch::IntegrationTest
     get "/robots.txt"
     assert_response :success
 
-    assert_equal "User-agent: *\n"\
+    assert_equal "Sitemap: http://www.example.com/sitemap.xml\n"\
+                 "\n"\
+                 "User-agent: *\n"\
                  "Disallow: /admin/\n"\
                  "\n"\
                  "User-agent: Bingbot\n"\
