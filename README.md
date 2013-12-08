@@ -64,6 +64,10 @@ end
 if request.subdomains.first == "api"
   disallow :all
 end
+
+# Add one or more sitemaps
+sitemap sitemap_url
+sitemap one_url, two_url
 ```
 
 ## Caveats
