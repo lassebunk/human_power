@@ -20,7 +20,7 @@ Or install it yourself:
 
     $ gem install human_power
 
-If you are using Rails, you can add a sample *config/robots.rb* configuration file:
+If you are using Rails, you can add a sample *config/robots.rb* configuration file and route for `/robots.txt`:
 
     $ rails g human_power:install
 
@@ -69,8 +69,6 @@ end
 sitemap sitemap_url
 sitemap one_url, two_url
 ```
-
-The `/robots.txt` route is automatically mapped, so you can visit it after changing the configuration.
 
 ## Caveats
 

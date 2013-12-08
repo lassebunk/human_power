@@ -8,5 +8,10 @@ module HumanPower
     def create_config_file
       copy_file "robots.rb", "config/robots.rb"
     end
+
+    desc "Creates a route for robots.txt"
+    def create_route
+      route %{mount HumanPower::Rails::Engine => "robots.txt"}
+    end
   end
 end
