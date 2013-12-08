@@ -20,6 +20,12 @@ Or install it yourself:
 
     $ gem install human_power
 
+If you are using Rails, you can add a sample *config/robots.rb* configuration file:
+
+    $ rails g human_power:install
+
+It will allow crawlers to access to the whole site by default.
+
 ## Usage
 
 ### Using in Ruby on Rails
