@@ -86,4 +86,27 @@ class HumanPowerTest < ActionView::TestCase
                  "Allow: /products/",
                  generator.render
   end
+
+  test "multiple user agents" do
+    generator = HumanPower::Generator.new(self) do
+      disallow_tree admin_path
+
+      user_agent ["My Custom User Agent", :googlebot] do
+        disallow login_path
+        allow_tree products_path
+      end
+    end
+
+    assert_equal "User-agent: *\n"\
+                 "Disallow: /admin/\n"\
+                 "\n"\
+                 "User-agent: Googlebot\n"\
+                 "Disallow: /login\n"\
+                 "Allow: /products/\n"\
+                 "\n"\
+                 "User-agent: My Custom User Agent\n"\
+                 "Disallow: /login\n"\
+                 "Allow: /products/",
+                 generator.render
+  end
 end
