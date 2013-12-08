@@ -70,6 +70,8 @@ sitemap sitemap_url
 sitemap one_url, two_url
 ```
 
+Then visit `/robots.txt` in your browser.
+
 ## Caveats
 
 Human Power is great for adding rules to your robots.txt.
