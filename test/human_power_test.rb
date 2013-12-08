@@ -48,4 +48,23 @@ class HumanPowerTest < ActionView::TestCase
                  "Disallow: /login",
                  generator.render
   end
+
+  test "custom user agent" do
+    generator = HumanPower::Generator.new(self) do
+      disallow_tree admin_path
+
+      user_agent "My Custom User Agent" do
+        disallow login_path
+        allow_tree products_path
+      end
+    end
+
+    assert_equal "User-agent: *\n"\
+                 "Disallow: /admin/\n"\
+                 "\n"\
+                 "User-agent: My Custom User Agent\n"\
+                 "Disallow: /login\n"\
+                 "Allow: /products/",
+                 generator.render
+  end
 end
