@@ -22,10 +22,14 @@ class HumanPowerTest < ActionView::TestCase
       disallow_tree admin_path
       
       googlebot do
+        allow product_path("one")
+        disallow_tree products_path
         disallow login_path
       end
 
       bingbot do
+        allow login_path
+        allow_tree products_path
         disallow product_path("two")
       end
     end
@@ -34,9 +38,13 @@ class HumanPowerTest < ActionView::TestCase
                  "Disallow: /admin/\n"\
                  "\n"\
                  "User-agent: Bingbot\n"\
+                 "Allow: /login\n"\
+                 "Allow: /products/\n"\
                  "Disallow: /products/two\n"\
                  "\n"\
                  "User-agent: Googlebot\n"\
+                 "Allow: /products/one\n"\
+                 "Disallow: /products/\n"\
                  "Disallow: /login",
                  generator.render
   end
