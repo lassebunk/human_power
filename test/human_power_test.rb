@@ -67,4 +67,23 @@ class HumanPowerTest < ActionView::TestCase
                  "Allow: /products/",
                  generator.render
   end
+
+  test "user agent as symbol" do
+    generator = HumanPower::Generator.new(self) do
+      disallow_tree admin_path
+
+      user_agent :googlebot do
+        disallow login_path
+        allow_tree products_path
+      end
+    end
+
+    assert_equal "User-agent: *\n"\
+                 "Disallow: /admin/\n"\
+                 "\n"\
+                 "User-agent: Googlebot\n"\
+                 "Disallow: /login\n"\
+                 "Allow: /products/",
+                 generator.render
+  end
 end
