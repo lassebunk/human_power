@@ -6,8 +6,6 @@ Human Power lets you write your robots.txt in plain Ruby and force the robots in
 
 ![Bingbot getting taught](http://i.imgur.com/77WVSQH.jpg)
 
-**This gem is under initial development and is not released yet.**
-
 ## Installation
 
 Add this line to your *Gemfile*:
