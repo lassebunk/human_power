@@ -24,7 +24,7 @@ If you are using Rails, you can add a sample *config/robots.rb* configuration fi
 
     $ rails g human_power:install
 
-It will allow crawlers to access to the whole site by default.
+It will allow crawlers access to the whole site by default.
 
 Now you can restart your server and visit `/robots.txt` to see what's generated from the new configuration file.
 
