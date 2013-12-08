@@ -2,7 +2,7 @@ require 'test_helper'
 
 class HumanPowerTest < ActionView::TestCase
   test "basic generation" do
-    text = HumanPower::Generator.new(self) do
+    generator = HumanPower::Generator.new(self) do
       allow_tree products_path
       allow product_path("one")
       disallow_tree admin_path
@@ -14,11 +14,11 @@ class HumanPowerTest < ActionView::TestCase
                  "Allow: /products/one\n"\
                  "Disallow: /admin/\n"\
                  "Disallow: /products/two",
-                 text.to_s
+                 generator.render
   end
 
   test "user agent helper" do
-    text = HumanPower::Generator.new(self) do
+    generator = HumanPower::Generator.new(self) do
       disallow_tree admin_path
       
       googlebot do
@@ -38,6 +38,6 @@ class HumanPowerTest < ActionView::TestCase
                  "\n"\
                  "User-agent: Googlebot\n"\
                  "Disallow: /login",
-                 text.to_s
+                 generator.render
   end
 end
