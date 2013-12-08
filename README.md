@@ -70,6 +70,8 @@ sitemap sitemap_url
 sitemap one_url, two_url
 ```
 
+The `/robots.txt` route is automatically mapped, so you can visit it after changing the configuration.
+
 ## Caveats
 
 Human Power is great for adding rules to your robots.txt.
