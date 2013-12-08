@@ -48,8 +48,16 @@ module HumanPower
       add_tree_rule :disallow, *paths
     end
 
+    def sitemap(*sitemap_urls)
+      sitemaps.push *sitemap_urls
+    end
+
     def rules
       @rules ||= Hash.new { |h, k| h[k] = [] }
+    end
+
+    def sitemaps
+      @sitemaps ||= []
     end
 
     def context
@@ -57,10 +65,20 @@ module HumanPower
     end
 
     def render
-      rules.keys.sort.map do |agent|
+      sections = []
+
+      if sitemaps.any?
+        sections << sitemaps.uniq.map { |url| "Sitemap: #{url}" }.join("\n")
+      end
+      
+      agents = rules.keys.sort.map do |agent|
         "User-agent: #{agent}\n" +
         rules[agent].uniq.map(&:render).join("\n")
-      end.compact.join("\n\n")
+      end
+      
+      sections.push *agents
+
+      sections.join("\n\n")
     end
 
     alias :to_s :render

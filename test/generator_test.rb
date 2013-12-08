@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class HumanPowerTest < ActionView::TestCase
+class GeneratorTest < ActionView::TestCase
   test "basic generation" do
     generator = HumanPower::Generator.new(self) do
       allow_tree products_path
@@ -107,6 +107,24 @@ class HumanPowerTest < ActionView::TestCase
                  "User-agent: My Custom User Agent\n"\
                  "Disallow: /login\n"\
                  "Allow: /products/",
+                 generator.render
+  end
+
+  test "sitemaps" do
+    generator = HumanPower::Generator.new(self) do
+      disallow_tree admin_path
+
+      sitemap "http://test.com/sitemap.xml"
+      sitemap "http://test.com/one.xml", "http://test.com/two.xml"
+      sitemap "http://test.com/two.xml"
+    end
+
+    assert_equal "Sitemap: http://test.com/sitemap.xml\n"\
+                 "Sitemap: http://test.com/one.xml\n"\
+                 "Sitemap: http://test.com/two.xml\n"\
+                 "\n"\
+                 "User-agent: *\n"\
+                 "Disallow: /admin/",
                  generator.render
   end
 end
