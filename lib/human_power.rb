@@ -1,5 +1,6 @@
 require "human_power/version"
 require "human_power/generator"
+require "human_power/rule"
 require "human_power/user_agents"
 require "human_power/rails" if defined?(Rails)
 

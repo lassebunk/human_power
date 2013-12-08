@@ -24,12 +24,28 @@ module HumanPower
       @current_agent_string = old_agent_string
     end
 
+    def add_rule(type, *paths)
+      rules[@current_agent_string].push *paths.map { |path| path.is_a?(Symbol) ? DISALLOW_KEYS.fetch(path) : path.to_s }.map { |path| HumanPower::Rule.new(type, path) }
+    end
+
+    def add_tree_rule(type, *paths)
+      add_rule type, *paths.map { |path| path.end_with?("/") ? path : "#{path}/" }
+    end
+
+    def allow(*paths)
+      add_rule :allow, *paths
+    end
+
+    def allow_tree(*paths)
+      add_tree_rule :allow, *paths
+    end
+
     def disallow(*paths)
-      rules[@current_agent_string].push *paths.map { |path| path.is_a?(Symbol) ? DISALLOW_KEYS.fetch(path) : path.to_s }
+      add_rule :disallow, *paths
     end
 
     def disallow_tree(*paths)
-      disallow *paths.map { |path| path.end_with?("/") ? path : "#{path}/" }
+      add_tree_rule :disallow, *paths
     end
 
     def rules
@@ -40,12 +56,14 @@ module HumanPower
       @context
     end
 
-    def to_s
+    def render
       rules.keys.sort.map do |agent|
         "User-agent: #{agent}\n" +
-        rules[agent].uniq.map { |path| "Disallow: #{path}" }.join("\n")
+        rules[agent].uniq.map(&:render).join("\n")
       end.compact.join("\n\n")
     end
+
+    alias :to_s :render
 
     def method_missing(method, *args, &block)
       if block && HumanPower.user_agents.has_key?(method)
