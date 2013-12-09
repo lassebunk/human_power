@@ -72,6 +72,11 @@ sitemap one_url, two_url
 
 Then visit `/robots.txt` in your browser.
 
+## Crawlers
+
+Please see [user_agents.yml](https://github.com/lassebunk/human_power/blob/master/user_agents.yml) for a list of 170+ built-in user agents/crawlers you can use like shown above.
+The list is from [UserAgentString.com](http://www.useragentstring.com/pages/Crawlerlist/).
+
 ## Caveats
 
 Human Power is great for adding rules to your robots.txt.
