@@ -1,6 +1,6 @@
 module HumanPower
   class Generator
-    DISALLOW_KEYS = { all: "*", none: "" }
+    DISALLOW_KEYS = { all: "/", none: "" }
 
     def initialize(context = nil, &block)
       @context = context

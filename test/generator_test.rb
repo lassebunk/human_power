@@ -17,6 +17,26 @@ class GeneratorTest < ActionView::TestCase
                  generator.render
   end
 
+  test "disallow all" do
+    generator = HumanPower::Generator.new(self) do
+      disallow :all
+    end
+
+    assert_equal "User-agent: *\n"\
+                 "Disallow: /",
+                 generator.render
+  end
+
+  test "disallow none" do
+    generator = HumanPower::Generator.new(self) do
+      disallow :none
+    end
+
+    assert_equal "User-agent: *\n"\
+                 "Disallow: ",
+                 generator.render
+  end
+
   test "user agent helper" do
     generator = HumanPower::Generator.new(self) do
       disallow_tree admin_path

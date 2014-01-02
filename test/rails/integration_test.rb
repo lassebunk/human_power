@@ -11,7 +11,7 @@ class IntegrationTest < ActionDispatch::IntegrationTest
                  "Disallow: /admin/\n"\
                  "\n"\
                  "User-agent: Bingbot\n"\
-                 "Disallow: *\n"\
+                 "Disallow: /\n"\
                  "\n"\
                  "User-agent: Googlebot\n"\
                  "Disallow: /products/one",
