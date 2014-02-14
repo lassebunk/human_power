@@ -8,8 +8,7 @@ module HumanPower
         end
 
         # render text: something does not give correct content type
-        response.headers["Content-Type"] = 'text/plain'
-        render text: generator.render
+        render text: generator.render, content_type: 'text/plain'
       end
     end
   end
