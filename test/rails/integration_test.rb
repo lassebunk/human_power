@@ -4,6 +4,7 @@ class IntegrationTest < ActionDispatch::IntegrationTest
   test "robots.txt" do
     get "/robots.txt"
     assert_response :success
+    assert_equal "text/plain", response.content_type
 
     assert_equal "Sitemap: http://www.example.com/sitemap.xml\n"\
                  "\n"\
