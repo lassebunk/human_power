@@ -77,6 +77,31 @@ Then visit `/robots.txt` in your browser.
 Please see [user_agents.yml](https://github.com/lassebunk/human_power/blob/master/user_agents.yml) for a list of 170+ built-in user agents/crawlers you can use like shown above.
 The list is from [UserAgentString.com](http://www.useragentstring.com/pages/Crawlerlist/).
 
+### Bot detection
+
+You can use the `HumanPower.is_bot?` method to check if a user agent is a known bot / crawler:
+
+```ruby
+# Googlebot
+ua = "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+HumanPower.is_bot?(ua) # => true
+
+# Chrome
+ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1944.0 Safari/537.36"
+HumanPower.is_bot?(ua) # => false
+
+# in Rails
+HumanPower.is_bot?(request.user_agent) # => performs check on current user agent
+```
+
+### Regular expression
+
+If you need to get a regular expression for bot detection, you can use:
+
+```ruby
+HumanPower.bot_regex # => regular expression that matches all known bots / crawlers
+```
+
 ## Caveats
 
 Human Power is great for adding rules to your robots.txt.

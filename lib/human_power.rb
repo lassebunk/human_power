@@ -24,6 +24,19 @@ module HumanPower
       @user_agents ||= load_user_agents
     end
 
+    # Regular expression to match bot user agents.
+    def bot_regex
+      @bot_regex ||= begin
+        escaped_values = user_agents.values.map { |ua| Regexp.escape(ua) }
+        /#{escaped_values.join("|")}/i
+      end
+    end
+
+    # Returns +true+ if a given user agent is a bot.
+    def is_bot?(user_agent)
+      !!(user_agent =~ bot_regex)
+    end
+
   private
 
       # Loads the built-in user agents from crawlers.yml.
