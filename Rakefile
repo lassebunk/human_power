@@ -1,5 +1,6 @@
 require "bundler/gem_tasks"
 require "rake/testtask"
+require "appraisal"
 
 Rake::TestTask.new(:test) do |t|
   t.libs << 'lib'
@@ -8,4 +9,10 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = false
 end
 
-task default: :test
+if !ENV["APPRAISAL_INITIALIZED"] && !ENV["TRAVIS"]
+  task :default do
+    sh "appraisal install && rake appraisal test"
+  end
+else
+  task :default => :test
+end
