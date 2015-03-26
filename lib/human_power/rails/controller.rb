@@ -1,6 +1,8 @@
+require "action_controller"
+
 module HumanPower
   module Rails
-    class RobotsController < ::ApplicationController
+    class RobotsController < ActionController::Base
       def robots
         generator = HumanPower::Generator.new(self) do
           file = ::Rails.root.join("config", "robots.rb").to_s
