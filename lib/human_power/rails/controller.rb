@@ -8,7 +8,7 @@ module HumanPower
         end
 
         # render text: something does not give correct content type
-        render text: generator.render, content_type: Mime::TEXT
+        render text: generator.render, content_type: Mime[:text]
       end
     end
   end
