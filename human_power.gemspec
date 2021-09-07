@@ -17,8 +17,8 @@ Gem::Specification.new do |s|
   s.test_files    = s.files.grep(%r{^test/})
   s.require_paths = ["lib"]
 
-  s.add_development_dependency "bundler", "~> 1.3"
+  s.add_development_dependency "bundler", "~> 2.2"
   s.add_development_dependency "rake"
-  s.add_development_dependency "rails", "~> 4.0.1"
+  s.add_development_dependency "rails", "~> 5.2.2"
   s.add_development_dependency "sqlite3"
 end

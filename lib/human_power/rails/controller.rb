@@ -7,8 +7,7 @@ module HumanPower
           instance_eval open(file).read, file
         end
 
-        # render text: something does not give correct content type
-        render text: generator.render, content_type: Mime::TEXT
+        render plain: generator.render
       end
     end
   end
